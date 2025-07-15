@@ -11,10 +11,22 @@ import { Cycles } from './components/Cycles';
 import { DefaultButton } from './components/DefaultButton';
 import { PlayCircleIcon } from 'lucide-react';
 import { Footer } from './components/Footer';
+import { useState } from 'react';
 
 export function App() {
+  const [numbers, setNumbers] = useState(0);
+
+  function handleClick() {
+    setNumbers(prevState => prevState + 1);
+    //setNumbers(1);
+  }
   return (
     <>
+      <Heading>
+        Number: <span id='numbers'>{numbers}</span>
+      </Heading>
+      <button onClick={handleClick}>Increment</button>
+
       <Container>
         <Heading>
           <Logo />
@@ -33,7 +45,7 @@ export function App() {
         <form className='form' action=''>
           <div className='formRow'>
             <DefaultInput
-              labelText='Task'
+              labelText={numbers.toString()}
               id='meuInput'
               type='text'
               placeholder='Type anything'
