@@ -47,10 +47,21 @@ export function MainForm() {
         ...prevState,
         config: { ...prevState.config },
         activeTask: newTask,
-        currentCycle: nextCycle, // Verify
+        currentCycle: nextCycle,
         secondsRemaining, // Verify
         formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining), // Verify
         tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+
+  function handleInterruptTask() {
+    setState(prevState => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
       };
     });
   }
@@ -77,20 +88,25 @@ export function MainForm() {
       </div>
 
       <div className='formRow'>
-        {!state.activeTask ? (
+        {!state.activeTask && (
           <DefaultButton
             aria-label='Iniciar nova tarefa'
             title='Iniciar nova tarefa'
             type='submit'
             icon={<PlayCircleIcon />}
+            key='button_submit'
           />
-        ) : (
+        )}
+
+        {!!state.activeTask && (
           <DefaultButton
             aria-label='Interrupt actual task'
             title='Interrupt actual task'
             type='button'
             color='red'
             icon={<StopCircleIcon />}
+            onClick={handleInterruptTask}
+            key='button_interrupt'
           />
         )}
       </div>
