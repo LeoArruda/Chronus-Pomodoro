@@ -8,15 +8,15 @@ export function MainForm() {
     <form className='form' action=''>
       <div className='formRow'>
         <DefaultInput
-          labelText='Task'
-          id='myInput'
+          labelText='task'
+          id='meuInput'
           type='text'
-          placeholder='Type anything'
+          placeholder='Digite algo'
         />
       </div>
 
       <div className='formRow'>
-        <p>Next interval is 25 minutes</p>
+        <p>Próximo intervalo é de 25min</p>
       </div>
 
       <div className='formRow'>
