@@ -9,6 +9,7 @@ import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
 import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { TaskActionTypes } from '../../contexts/TaskContext/TaskActions';
+import { Tips } from '../Tips';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -61,7 +62,7 @@ export function MainForm() {
       </div>
 
       <div className='formRow'>
-        <p>Next Interval of 25min</p>
+        <Tips />
       </div>
 
       <div className='formRow'>
