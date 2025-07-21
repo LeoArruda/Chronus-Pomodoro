@@ -1,12 +1,16 @@
-import styles from './styles.module.css';
-
 import { TrashIcon } from 'lucide-react';
 import { Container } from '../../components/Container';
 import { DefaultButton } from '../../components/DefaultButton';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 
+import styles from './styles.module.css';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { formatDate } from '../../utils/formatDate';
+
 export function History() {
+  const { state } = useTaskContext();
+
   return (
     <MainTemplate>
       <Container>
@@ -16,8 +20,8 @@ export function History() {
             <DefaultButton
               icon={<TrashIcon />}
               color='red'
-              aria-label='Apagar todo o histórico'
-              title='Apagar histórico'
+              aria-label='Clean the history'
+              title='Clean the history'
             />
           </span>
         </Heading>
@@ -28,23 +32,23 @@ export function History() {
           <table>
             <thead>
               <tr>
-                <th>Tarefa</th>
-                <th>Duração</th>
-                <th>Data</th>
+                <th>Task</th>
+                <th>Duration</th>
+                <th>Date</th>
                 <th>Status</th>
-                <th>Tipo</th>
+                <th>Type</th>
               </tr>
             </thead>
 
             <tbody>
-              {Array.from({ length: 20 }).map((_, index) => {
+              {state.tasks.map(task => {
                 return (
-                  <tr key={index}>
-                    <td>Estudar</td>
-                    <td>25min</td>
-                    <td>20/04/2025 08:00</td>
-                    <td>Completa</td>
-                    <td>Foco</td>
+                  <tr key={task.id}>
+                    <td>{task.name}</td>
+                    <td>{task.duration}min</td>
+                    <td>{formatDate(task.startDate)}</td>
+                    <td>{task.interruptDate}</td>
+                    <td>{task.type}</td>
                   </tr>
                 );
               })}
