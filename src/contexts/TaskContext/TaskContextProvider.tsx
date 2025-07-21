@@ -43,6 +43,8 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
     worker.postMessage(state);
   }, [worker, state]);
 
+  document.title = `${state.formattedSecondsRemaining} - Pomodorus Chronus`;
+
   useEffect(() => {
     if (state.activeTask && playBeepRef.current === null) {
       playBeepRef.current = loadBeep();
