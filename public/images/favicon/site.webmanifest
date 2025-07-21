@@ -1,7 +1,7 @@
 {
-  "name": "Chronos Pomodoro",
-  "short_name": "Chronos",
-  "lang": "pt-BR",
+  "name": "Pomodorus Chronus",
+  "short_name": "Pomodorus",
+  "lang": "en-US",
   "icons": [
     {
       "src": "/images/favicon/web-app-manifest-192x192.png",
