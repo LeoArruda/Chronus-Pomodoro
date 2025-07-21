@@ -8,9 +8,11 @@ import styles from './styles.module.css';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
+import { sortTasks } from '../../utils/sortTasks';
 
 export function History() {
   const { state } = useTaskContext();
+  const sortedTaks = sortTasks({ tasks: state.tasks });
 
   return (
     <MainTemplate>
@@ -42,7 +44,7 @@ export function History() {
             </thead>
 
             <tbody>
-              {state.tasks.map(task => {
+              {sortedTaks.map(task => {
                 return (
                   <tr key={task.id}>
                     <td>{task.name}</td>
