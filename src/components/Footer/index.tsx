@@ -1,12 +1,13 @@
+import { Link } from 'react-router';
 import styles from './styles.module.css';
 
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <a href=''>Understand how Pomodoro works</a>
-      <a href=''>
+      <Link to='/about-pomodoro/'>Understand how Pomodoro works</Link>
+      <Link to='/'>
         Chronus Pomodoro &copy; {new Date().getFullYear()} - Made with 💚
-      </a>
+      </Link>
     </footer>
   );
 }
