@@ -6,6 +6,7 @@ import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 import { useRef } from 'react';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { showMessage } from '../../adapters/showMessage';
 
 export function Settings() {
   const { state } = useTaskContext();
@@ -15,12 +16,38 @@ export function Settings() {
 
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    showMessage.dismiss();
 
-    const workTime = workTimeInput.current?.value;
-    const shortBreakTime = shortBreakTimeInput.current?.value;
-    const longBreakTime = longBreakTimeInput.current?.value;
+    const formErrors = [];
 
-    console.log(workTime, shortBreakTime, longBreakTime);
+    const workTime = Number(workTimeInput.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInput.current?.value);
+    const longBreakTime = Number(longBreakTimeInput.current?.value);
+
+    if (isNaN(workTime) || isNaN(shortBreakTime) || isNaN(longBreakTime)) {
+      formErrors.push('Type only numbers on ALL fields');
+    }
+
+    if (workTime < 1 || workTime > 99) {
+      formErrors.push('Type values between 1 and 99 on Focus time');
+    }
+
+    if (shortBreakTime < 1 || shortBreakTime > 30) {
+      formErrors.push('Type values between 1 and 30 on Short Break time');
+    }
+
+    if (longBreakTime < 1 || longBreakTime > 60) {
+      formErrors.push('Type values between 1 and 60 on Long Break time');
+    }
+
+    if (formErrors.length > 0) {
+      formErrors.forEach(error => {
+        showMessage.error(error);
+      });
+      return;
+    }
+
+    console.log('SALVAR');
   }
 
   return (
@@ -44,6 +71,7 @@ export function Settings() {
               labelText='Focus'
               ref={workTimeInput}
               defaultValue={state.config.workTime}
+              type='number'
             />
           </div>
           <div className='formRow'>
@@ -52,6 +80,7 @@ export function Settings() {
               labelText='Short Break Time'
               ref={shortBreakTimeInput}
               defaultValue={state.config.shortBreakTime}
+              type='number'
             />
           </div>
           <div className='formRow'>
@@ -60,6 +89,7 @@ export function Settings() {
               labelText='Long Break Time'
               ref={longBreakTimeInput}
               defaultValue={state.config.longBreakTime}
+              type='number'
             />
           </div>
           <div className='formRow'>
