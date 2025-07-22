@@ -40,7 +40,7 @@ export function Menu() {
     <nav className={styles.menu}>
       <RouterLink
         className={styles.menuLink}
-        to='/'
+        href='/'
         aria-label='Go to Home page'
         title='Go to Home page'
       >
@@ -49,7 +49,7 @@ export function Menu() {
 
       <RouterLink
         className={styles.menuLink}
-        to='/history/'
+        href='/history/'
         aria-label='Check History'
         title='Check History'
       >
@@ -58,7 +58,7 @@ export function Menu() {
 
       <RouterLink
         className={styles.menuLink}
-        to='/settings/'
+        href='/settings/'
         aria-label='Go to Settings'
         title='Go to Settings'
       >
