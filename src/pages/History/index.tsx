@@ -40,6 +40,10 @@ export function History() {
   }, [state.tasks]);
 
   useEffect(() => {
+    document.title = 'History - Pomodorus Chronus';
+  }, []);
+
+  useEffect(() => {
     if (!confirmClearHistory) return;
 
     setConfirmClearHistory(false);
