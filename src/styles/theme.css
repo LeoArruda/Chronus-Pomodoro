@@ -39,8 +39,8 @@
   --text-muted: #aab3cc; /* Muted text color (placeholders, labels, etc.) */
 
   /* 🚫 Muted - muted Buttons and ellements */
-  --disabled: #555f7d; /* Cor de fundo de elementos desativados */
-  --text-disabled: #aab3cc; /* Texto de botões ou inputs desativados */
+  --disabled: #555f7d; /*  */
+  --text-disabled: #aab3cc; /* */
 
   /* 🔔 Toastify (notification) */
   --toastify-color-light: var(--text-default);

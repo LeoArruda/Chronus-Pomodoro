@@ -43,7 +43,9 @@ export function MainForm() {
       duration: state.config[nextCycleType],
       type: nextCycleType,
     };
+
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
     showMessage.success(`Task "${taskName}" started successfully!`);
   }
 
